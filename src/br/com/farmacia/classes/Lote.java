@@ -1,4 +1,4 @@
-package farmacia.classes;
+package br.com.farmacia.classes.Pedido;
 
 public class Lote {
     private int idLote;
