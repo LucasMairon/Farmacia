@@ -1,21 +1,23 @@
 package br.com.farmacia.classes;
 
-public class Pessoa {
-    String nome;
-    String cpf;
-    char sexo;
-    String telefone;
-    String email;
-    String nascimento;
-    String estado;
-    String cidade;
-    String bairro;
-    String rua;
-    String numeroDaCasa;
-    String complemento;
+
+public abstract class Pessoa {
+    private String nome;
+    private String cpf;
+    private char sexo;
+    private String telefone;
+    private String email;
+    private String nascimento;
+    private String estado;
+    private String cidade;
+    private String bairro;
+    private String rua;
+    private String numeroDaCasa;
+    private String complemento;
+    public int getIdCliente;
 
 
-    Pessoa (String nome, String cpf, char sexo,String telefone, String email, String nascimento, String estado, String cidade, String bairro, String rua, String numeroDaCasa, String complemento){
+    public Pessoa (String nome, String cpf, char sexo,String telefone, String email, String nascimento, String estado, String cidade, String bairro, String rua, String numeroDaCasa, String complemento){
         this.nome = nome;
         this.cpf = cpf;
         this.sexo =sexo;
@@ -30,18 +32,13 @@ public class Pessoa {
         this.complemento = complemento;
     }
 
-    public static Pessoa  criarpessoa(String nome, String cpf, char sexo,String telefone, String email, String nascimento, String estado, String cidade, String bairro, String rua, String numeroDaCasa, String complemento){
-        return new Pessoa(nome, cpf, sexo, telefone, email, nascimento, estado, cidade, bairro, rua, numeroDaCasa, complemento);
-    }
-    public void editarPessoa(){
-    }
+    
+    public abstract void editarPessoa();
+    
+    public abstract void deletarPessoa(int id);
 
-    public void deletarPessoa(){
-    }
+    public abstract void listarPessoa();
+    
 
-    public void listarPessoa(){
-    }
-
-    public void vizualizarPessoa(){
-    }
+    public abstract void vizualizarPessoa();
 }
