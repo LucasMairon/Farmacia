@@ -56,6 +56,44 @@ public class Lote {
         this.loteCodigo = loteCodigo;
     }
 
+    public void deletar(){}
+
+    public boolean aindaEstaValido() {
+        // Todo: fazer a lógica pra saber se o Lote do medicamento ainda está válido.
+        return true;
+    }
+
+    public Lote retirarLote(int quantidadeDoMedicamento) {
+        this.quantidadeEmEstoque -= quantidadeDoMedicamento;
+        return new Lote(quantidadeDoMedicamento, validade, fabricacao, loteCodigo);
+    }
+
+    public void acrecentarQuantidadeDoMedicamento(int quantidadeDoMedicamento) {
+        this.quantidadeEmEstoque += quantidadeDoMedicamento;
+    }
+
+    public static Lote buscarLote(ArrayList<Lote> lotes, int idLote) {
+        for (Lote lote : lotes)
+            if (lote.idLote == idLote)
+                return lote;
+        return null;
+    }
+
+    public void editarLote(String loteCodigo, int quantidadeEmEstoque, String fabricacao, String validade) {
+        if (loteCodigo != null)
+            this.loteCodigo = loteCodigo;
+        if (quantidadeEmEstoque >= 0)
+            this.quantidadeEmEstoque = quantidadeEmEstoque;
+        if (fabricacao != null)
+            this.fabricacao = fabricacao;
+        if (validade != null)
+            this.validade = validade;
+    }
+
+    public void visualizar() {
+         System.out.println(this);
+    }
+
     @Override
     public String toString() {
         return "Lote:" + '\n' +
@@ -75,7 +113,7 @@ public class Lote {
         if (getClass() != obj.getClass())
             return false;
         Lote other = (Lote) obj;
-        if (idLote != other.idLote)
+        if (loteCodigo != other.loteCodigo)
             return false;
         return true;
     }
