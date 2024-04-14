@@ -1,4 +1,4 @@
-package br.com.farmacia.classes.Pedido;
+package br.com.farmacia.classes;
 
 import java.util.ArrayList;
 
@@ -66,6 +66,88 @@ public class Medicamento {
 
     public void setLotes(ArrayList<Lote> lotes) {
         this.lotes = lotes;
+    }
+
+    public void deletar(){}
+
+    public void editar(String nome, String descricao, double preco) {
+        if (nome != null)
+            this.nome = nome;
+        if (descricao != null)
+            this.descricao = descricao;
+        if (preco >= 0)
+            this.preco = preco;
+    }
+
+    public static void listar(ArrayList<Medicamento> meds) {
+
+        for (Medicamento med : meds) {
+            med.visualizar();
+            System.out.println();
+        }
+    }
+
+    public static Medicamento buscarMedicamento(ArrayList<Medicamento> meds, int idMedicamento) {
+        for (Medicamento medicamento : meds)
+            if (medicamento.idMedicamento == idMedicamento)
+                return medicamento;
+        return null;
+    }
+
+    public int quantidadeDeMedicamentosValidosEmEstoque() {
+        int quantidadeDeMedicamentos = 0;
+        for (Lote lote : lotes)
+            if (lote.aindaEstaValido())
+                quantidadeDeMedicamentos += lote.getQuantidadeEmEstoque();
+        return quantidadeDeMedicamentos;
+    }
+
+    public Medicamento retirarMedicamento(int quantidadeDoMedicamento) {
+
+        if (quantidadeDeMedicamentosValidosEmEstoque() < quantidadeDoMedicamento)
+            return null;
+
+        ArrayList<Lote> novosLotes = new ArrayList<Lote>();
+
+        int quantidadeEmEstoque = 0;
+        Lote lote = null;
+
+        for (int i = 0; i < lotes.size() && quantidadeDoMedicamento > 0; i++) {
+            quantidadeEmEstoque = lotes.get(i).getQuantidadeEmEstoque();
+            if (quantidadeDoMedicamento >= quantidadeEmEstoque) {
+                quantidadeDoMedicamento -= quantidadeEmEstoque;
+                novosLotes.add(lotes.remove(i));
+            } else {
+                lote = lotes.get(i);
+                novosLotes.add(lote.retirarLote(quantidadeDoMedicamento));
+            }
+        }
+
+        Medicamento novoMedicamento = new Medicamento(nome, descricao, preco, novosLotes);
+        novoMedicamento.idMedicamento = idMedicamento;
+        return novoMedicamento;
+    }
+
+    public void adicionarLoteAoMedicamento(ArrayList<Lote> lotes) {
+        for (Lote lote : lotes)
+            adicionarLoteAoMedicamento(lote);
+    }
+
+    public void adicionarLoteAoMedicamento(Lote lote) {
+        int indexDoLote = this.lotes.indexOf(lote);
+        if (indexDoLote >= 0) {
+            lotes.get(indexDoLote).acrecentarQuantidadeDoMedicamento(lote.getQuantidadeEmEstoque());
+        } else {
+            this.lotes.add(lote);
+        }
+    }
+
+    public void visualizar() {
+        System.out.println("Medicamento: ");
+        System.out.println("\tId: " + idMedicamento);
+        System.out.println("\tNome: " + nome);
+        System.out.println("\tDescrição: " + descricao);
+        System.out.println("\tPreço: " + preco);
     }
 
     @Override
