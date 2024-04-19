@@ -1,5 +1,4 @@
-package br.com.farmacia.classes;
-
+package br.com.farmacia.models.entidade;
 
 public abstract class Pessoa {
     private String nome;
@@ -16,11 +15,11 @@ public abstract class Pessoa {
     private String complemento;
     public int getIdCliente;
 
-
-    public Pessoa (String nome, String cpf, char sexo,String telefone, String email, String nascimento, String estado, String cidade, String bairro, String rua, String numeroDaCasa, String complemento){
+    public Pessoa(String nome, String cpf, char sexo, String telefone, String email, String nascimento, String estado,
+            String cidade, String bairro, String rua, String numeroDaCasa, String complemento) {
         this.nome = nome;
         this.cpf = cpf;
-        this.sexo =sexo;
+        this.sexo = sexo;
         this.telefone = telefone;
         this.email = email;
         this.nascimento = nascimento;
@@ -32,13 +31,11 @@ public abstract class Pessoa {
         this.complemento = complemento;
     }
 
-    
     public abstract void editarPessoa();
-    
+
     public abstract void deletarPessoa(int id);
 
     public abstract void listarPessoa();
-    
 
     public abstract void vizualizarPessoa();
 }
