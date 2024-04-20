@@ -11,7 +11,7 @@ public class BancoDeDados {
     private static String driver = "org.postgresql.Driver";
     private static String url = "jdbc:postgresql://localhost:5432/farmacia";
     private static String user = "postgres";
-    private static String password = null;
+    private static String password = "postgres";
 
     private static Connection conn;
 
@@ -34,6 +34,7 @@ public class BancoDeDados {
         MedicamentoDAO.conn = getConnection();
         LoteDAO.conn = getConnection();
         EstoqueDAO.conn = getConnection();
+        FuncionarioDAO.conn = getConnection();
     }
 
     public static void fecharConexao() throws SQLException {
@@ -52,3 +53,4 @@ public class BancoDeDados {
         resultSet.close();
     }
 }
+
