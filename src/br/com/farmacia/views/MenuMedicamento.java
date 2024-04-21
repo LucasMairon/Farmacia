@@ -7,7 +7,7 @@ import br.com.farmacia.utils.Util;
 public class MenuMedicamento {
     public static Scanner scan;
 
-    public static void main() {
+    public static void chamMenuMedicamento() {
         Integer escolha = 0;
         String nome = "";
         String descricao = "";
@@ -34,8 +34,7 @@ public class MenuMedicamento {
             switch (escolha) {
                 case 1:
                     System.out.println("criando o medicamento");
-                    System.out.print("Nome: ");
-                    nome = scan.nextLine();
+                    nome = Util.getNome(scan,"Nome: ","Padrão de nome incorreto, tente novamente");
                     System.out.print("Descrição: ");
                     descricao = scan.nextLine();
                     preco = Util.getDouble(scan, "Preço: ", "Digite novamente o preço: ");
@@ -44,7 +43,7 @@ public class MenuMedicamento {
                 case 5:
                     idMedicamento = Util.getInteiro(scan, "Digite o id do medicamento\nId: ",
                             "Digite novamente o id do medicamento\nId: ");
-                    MenuLote.main(idMedicamento);
+                    MenuLote.chamaMenuLote(idMedicamento);
                     break;
                 case 2:
                     System.out.println("Listando os medicamentos da farmácia");
@@ -75,8 +74,7 @@ public class MenuMedicamento {
                         case 1:
                             editarTodosOsCampos = true;
                         case 2:
-                            System.out.print("Nome: ");
-                            nome = scan.nextLine();
+                            nome = Util.getNome(scan,"Nome: ","Padrão de nome incorreto, tente novamente");
                             if (!editarTodosOsCampos)
                                 break;
                         case 3:

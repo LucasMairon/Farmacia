@@ -117,13 +117,11 @@ public class ClienteDAO {
         return resultado;
     }
 
-    public static int salvar(Cliente cliente) throws SQLException {
-        int resultado = 0;
+    public static void salvar(Cliente cliente) throws SQLException {
         if (cliente.getIdCliente() != 0)
-            resultado = atualizar(cliente);
+            atualizar(cliente);
         else
-            resultado = inserir(cliente);
-        return resultado;
+            inserir(cliente);
     }
 
     public static int deletar(Cliente cliente) throws SQLException {

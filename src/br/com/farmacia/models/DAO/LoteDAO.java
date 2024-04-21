@@ -133,12 +133,11 @@ public class LoteDAO {
         return resultado;
     }
 
-    public static int salvar(Lote lote, int idMedicamento) throws SQLException {
+    public static void salvar(Lote lote, int idMedicamento) throws SQLException {
         if (lote.getIdLote() != 0)
             atualizar(lote, idMedicamento);
         else
             inserir(lote, idMedicamento);
-        return 0;
     }
 
     public static int deletar(Lote lote, int idMedicamento) throws SQLException {

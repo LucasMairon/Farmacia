@@ -9,70 +9,109 @@ public abstract class Util {
             scan.nextLine();
     }
 
-    public static boolean getNome(String nome,Scanner scan){
+    public static String getNome(Scanner scan,String mensagem, String mensagemDeErro){
         boolean padraoNome = false;
+        System.out.println(mensagem);
+        String nome = scan.nextLine();
         while(padraoNome == false){
-            
-            if(nome.matches("^[a-zA-Zá-úÀ-Ù\\s]+$")){
+            if(nome.matches("^([a-zA-Zá-úÁ-Ú]|\\s)+$".trim())){
                 padraoNome = true;
             }else{
-                System.out.print("\nPadrão de nome incorreto, tente novamente: ");
+                System.out.print("\n" + mensagemDeErro);
                 nome = scan.nextLine();
             }
         }
-        return padraoNome;
+        return nome;
     }
 
-    public static boolean getCpf(String cpf,Scanner scan){
+    public static String getCpf(Scanner scan, String mensagem, String mensagemDeErro){
         boolean padraoCpf = false;
+        System.out.println(mensagem);
+        String cpf = scan.nextLine();
         while(padraoCpf == false){
-            if(cpf.matches("^\\d{3}.\\d{3}.\\d{3}-\\d{2}$")){
+            if(cpf.matches("^\\d{3}.\\d{3}.\\d{3}-\\d{2}$".trim())){
                 padraoCpf = true;
             }else{
-                System.out.print("\nPadrão de CPF incorreto, tente novamente: ");
+                System.out.print("\n" + mensagemDeErro);
                 cpf = scan.nextLine();
             }
         }
-        return padraoCpf;
+        return cpf;
      }
 
-    public static boolean getTelefone(String telefone,Scanner scan){
+    public static String getTelefone(Scanner scan, String mensagem, String mensagemDeErro){
         boolean padraoTelefone = false;
+        System.out.println(mensagem);
+        String telefone = scan.nextLine();
         while(padraoTelefone == false){
-            if(telefone.matches("^\\d{5}-\\d{4}$")){
+            if(telefone.matches("^\\(\\d{2}\\)\\d{5}-\\d{4}$".trim())){
                 padraoTelefone = true;
             }else{
-                System.out.print("\nPadrão de Telefone incorreto, tente novamente: ");
+                System.out.print("\n" + mensagemDeErro);
                 telefone = scan.nextLine();
             }
         }
-        return padraoTelefone;
+        return telefone;
      }
 
-    public static boolean getEmail(String email,Scanner scan){
+    public static String getEmail(Scanner scan, String mensagem, String mensagemDeErro){
         boolean padraoEmail = false;
+        System.out.println(mensagem);
+        String email = scan.nextLine();
         while(padraoEmail == false){
-            if(email.matches("^[a-z0-9._]+@[a-z]+\\.([a-z]{3,})(\\.[a-z]{2,})?$")){
+            if(email.matches("^[a-z0-9._]+@[a-z]+\\.([a-z]{3,})(\\.[a-z]{2,})?$".trim())){
                 padraoEmail = true;
             }else{
                 System.out.print("\nPadrão de email incorreto, tente novamente: ");
                 email = scan.nextLine();
             }
         }
-        return padraoEmail;
+        return email;
     }
 
-    public static boolean getData(String data,Scanner scan){
+    public static String getData(Scanner scan, String mensagem, String mensagemDeErro){
         boolean padraoData = false;
+        System.out.println(mensagem);
+        String data = scan.nextLine();
         while(padraoData == false){
-            if(data.matches("^\\d{2}\\/\\d{2}\\/\\d{2,4}$")){
+            if(data.matches("^\\d{2}\\/\\d{2}\\/\\d{2,4}$".trim())){
                 padraoData = true;
             }else{
-                System.out.print("\nPadrão de data incorreto, tente novamente: ");
+                System.out.print("\n" + mensagemDeErro);
                 data = scan.nextLine();
             }
         }
-        return padraoData;
+        return data;
+    }
+    
+    public static String getSexo(Scanner scan, String mensagem, String mensagemDeErro){
+        boolean padraoSexo = false;
+        System.out.println(mensagem);
+        String sexo = scan.nextLine();
+        while(padraoSexo == false){
+            if(sexo.matches("^[MF]$".trim())){
+                padraoSexo = true;
+            }else{
+                System.out.print("\n" + mensagemDeErro);
+                sexo = scan.nextLine();
+            }
+        }
+        return sexo;
+    }
+    
+    public static String getEstado(Scanner scan, String mensagem, String mensagemDeErro){
+        boolean padraoEstado = false;
+        System.out.println(mensagem);
+        String estado = scan.nextLine();
+        while(padraoEstado == false){
+            if(estado.matches("^[A-Z]{2}$".trim())){
+                padraoEstado = true;
+            }else{
+                System.out.print("\n" + mensagemDeErro);
+                estado = scan.nextLine();
+            }
+        }
+        return estado;
     }
 
     public static Integer getInteiro(Scanner scan) {
@@ -112,6 +151,17 @@ public abstract class Util {
                 limparBuffer(scan);
             }
         } while (valor == null);
+        return valor;
+    }
+
+    public static int getQuantidade(Scanner scan, String mensagem, String mensagemErro) {
+        Integer valor = null;
+        System.out.print(mensagem);
+        valor = getInteiro(scan);
+        while (valor == null || valor <= 0) {
+            System.out.print(mensagemErro);
+            valor = getInteiro(scan);
+        }
         return valor;
     }
 }

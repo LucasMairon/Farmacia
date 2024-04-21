@@ -8,7 +8,7 @@ import br.com.farmacia.utils.Util;;
 public class MenuLote {
     public static Scanner scan;
 
-    public static void main(int idMedicamento) {
+    public static void chamaMenuLote(int idMedicamento) {
         Integer escolha = null;
         Integer quantidadeEmEstoque;
         int idLote = 0;
@@ -36,13 +36,9 @@ public class MenuLote {
                     System.out.println("Criando lote");
                     System.out.print("Código do lote: ");
                     loteCodigo = scan.nextLine();
-                    System.out.print("Quantidade Em estoque: ");
-                    quantidadeEmEstoque = Util.getInteiro(scan);
-                    Util.limparBuffer(scan);
-                    System.out.print("Fabricação: ");
-                    fabricacao = scan.nextLine();
-                    System.out.print("Validade: ");
-                    validade = scan.nextLine();
+                    quantidadeEmEstoque = Util.getInteiro(scan,"Quantidade em estoque: ","Tente novamente: ");
+                    fabricacao = Util.getData(scan, "Data de Fabricação(formato dd/mm/yyyy ou dd/mm/yy):", "Tente novamente");
+                    validade = Util.getData(scan, "Data de Validade(formato dd/mm/yyyy ou dd/mm/yy)", "Tente novamente");
                     MedicamentoControle.adicionarLoteAoMedicamento(idMedicamento, loteCodigo, quantidadeEmEstoque, fabricacao, validade);
 
                     break;
@@ -54,8 +50,7 @@ public class MenuLote {
                     quantidadeEmEstoque = null;
 
                     System.out.println("Editar o lote");
-                    System.out.println("Digite o id do Lote: ");
-                    idLote = scan.nextInt();
+                    idLote = Util.getInteiro(scan, "Digite o id do Lote:", "Tente novamente");
 
                     switch (escolha) {
                         case 1:
@@ -66,19 +61,16 @@ public class MenuLote {
                             if (!editarTodosOsCampos)
                                 break;
                         case 3:
-                            System.out.print("Quantidade Em estoque: ");
-                            quantidadeEmEstoque = scan.nextInt();
+                            quantidadeEmEstoque = Util.getInteiro(scan,"Quantidade em estoque: ","Tente novamente: ");
                             Util.limparBuffer(scan);
                             if (!editarTodosOsCampos)
                                 break;
                         case 4:
-                            System.out.print("Fabricação: ");
-                            fabricacao = scan.nextLine();
+                            fabricacao = Util.getData(scan, "Data de Fabricação(formato dd/mm/yyyy ou dd/mm/yy):", "Tente novamente");
                             if (!editarTodosOsCampos)
                                 break;
                         case 5:
-                            System.out.print("Validade: ");
-                            validade = scan.nextLine();
+                            validade = Util.getData(scan, "Data de Validade(formato dd/mm/yyyy ou dd/mm/yy)", "Tente novamente");
                             break;
                         default:
                             System.out.println("A escolha não está entre as opções do menu");
@@ -87,9 +79,7 @@ public class MenuLote {
                     LoteControle.editarLote(idMedicamento, idLote, loteCodigo, quantidadeEmEstoque, fabricacao, validade);
                     break;
                 case 4:
-                    System.out.println("Digite o id do lote que deseja excluir");
-                    System.out.print("Id: ");
-                    idLote = Util.getInteiro(scan);
+                    idLote = Util.getInteiro(scan, "Digite o id do lote que deseja excluir: ", "Tente novamente");
                     LoteControle.deletarLote(idLote, idMedicamento);
                 case 0:
                     System.out.println("Voltando ao menu do medicamento");

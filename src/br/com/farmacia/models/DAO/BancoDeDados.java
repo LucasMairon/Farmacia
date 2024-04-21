@@ -23,8 +23,8 @@ public class BancoDeDados {
             try {
                 Class.forName(driver);
                 conn = DriverManager.getConnection(url, user, password);
-                System.out.println(conn);
             } catch (ClassNotFoundException e) {
+                System.out.println("Erro na conexão com o banco");
                 e.printStackTrace();
             }
         return conn;
@@ -35,6 +35,8 @@ public class BancoDeDados {
         LoteDAO.conn = getConnection();
         EstoqueDAO.conn = getConnection();
         FuncionarioDAO.conn = getConnection();
+        ClienteDAO.conn = getConnection();
+        PedidoDAO.conn = getConnection();
     }
 
     public static void fecharConexao() throws SQLException {

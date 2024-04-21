@@ -79,13 +79,13 @@ public class MedicamentoDAO {
         return resultado;
     }
 
-    public static int salvar(Medicamento medicamento) throws SQLException {
-        int resultado = 0;
+    public static void salvar(Medicamento medicamento) throws SQLException {
+
         if (medicamento.getIdMedicamento() != 0)
-            resultado = atualizar(medicamento);
+            atualizar(medicamento);
         else
-            resultado = inserir(medicamento);
-        return resultado;
+            inserir(medicamento);
+
     }
 
     public static int deletar(Medicamento medicamento) throws SQLException {
