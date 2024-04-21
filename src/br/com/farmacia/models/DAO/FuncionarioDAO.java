@@ -150,13 +150,11 @@ public class FuncionarioDAO {
     }
 
 
-    public static int salvar(Funcionario funcionario) throws SQLException {
-        int resultado = 0;
+    public static void salvar(Funcionario funcionario) throws SQLException {
         if (funcionario.getIdFuncionario() != 0)
-            resultado = atualizar(funcionario);
+            atualizar(funcionario);
         else
-            resultado  = inserir(funcionario);
-        return resultado;
+            inserir(funcionario);
     }
 
 

@@ -78,7 +78,7 @@ public class Funcionario extends Pessoa{
         if (cargo!=null) {
             setCargo(cargo);
         }
-        if (admin) {
+        if (admin != true || admin != false) {
             setAdmin(admin);
         }
         if (senha!=null) {
@@ -146,7 +146,7 @@ public class Funcionario extends Pessoa{
     }
 
     public String toString(){
-        return super.toString()+"\nID = "+idFuncionario+"\nSalario = "+salario+"\nCargo = "+cargo+"\neh ADM = "+admin + "\n\n";
+        return super.toString()+"\nId do funcionário: "+idFuncionario+"\nSalario: "+salario+"\nCargo: "+cargo+"\né ADM: " + admin + "\n\n";
     }
 
 }

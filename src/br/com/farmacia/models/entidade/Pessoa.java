@@ -46,7 +46,7 @@ public abstract class Pessoa {
 
     @Override
     public String toString() {
-        return "nome = " + nome + "\ncpf = " + cpf + "\nsexo = " + sexo + "\ntelefone = " + telefone + "\nemail = " + email + "\nnascimento = " + nascimento + "\nestado = " + estado + "\ncidade = " + cidade + "\nbairro = " + bairro + "\nrua = " + rua + "\nnumeroDaCasa = " + numeroDaCasa + "\ncomplemento = " + complemento;
+        return "nome: " + this.nome + "\ncpf: " + cpf + "\nsexo: " + sexo + "\ntelefone: " + telefone + "\nemail: " + email + "\nnascimento: " + nascimento + "\nestado: " + estado + "\ncidade: " + cidade + "\nbairro: " + bairro + "\nrua: " + rua + "\nnumeroDaCasa: " + numeroDaCasa + "\ncomplemento: " + complemento;
     }
 
 

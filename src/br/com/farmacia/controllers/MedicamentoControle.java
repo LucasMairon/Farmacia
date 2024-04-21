@@ -57,7 +57,7 @@ public class MedicamentoControle {
                 System.out.println("Não há medicamentos para listar");
                 return;
             }
-            System.out.println("Medicamentos disponíveis na farmacia\n");
+            System.out.println("\nMedicamentos disponíveis na farmacia:\n");
             for (Medicamento medicamento : medicamentos)
                 System.out.println(medicamento + "\n");
         } catch (SQLException e) {
@@ -74,8 +74,9 @@ public class MedicamentoControle {
                 return;
             }
             System.out.println(medicamento);
+            LoteControle.listarLotes(idMedicamento);
         } catch (SQLException e) {
-            System.out.println("Erro ao pegar o medicamento para visualizar");
+            System.out.println("Erro ao visualizar medicamento");
         }
     }
 
@@ -89,7 +90,7 @@ public class MedicamentoControle {
             }
             System.out.println(medicamento);
         } catch (SQLException e) {
-            System.out.println("Erro ao pegar o medicamento para visualizar");
+            System.out.println("Erro ao visualizar medicamento");
         }
     }
 
